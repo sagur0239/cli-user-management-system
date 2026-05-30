@@ -1,6 +1,6 @@
 # CLI User Management System (Python)
 
-## 📌 Overview
+## Overview
 
 A backend-style CLI application built with Python that uses JSON file handling as a lightweight database.
 
@@ -8,7 +8,7 @@ This project demonstrates real-world backend concepts such as CRUD operations, m
 
 ---
 
-## 🚀 Features
+## Features
 
 * Create User
 * Show All Users
@@ -19,7 +19,7 @@ This project demonstrates real-world backend concepts such as CRUD operations, m
 
 ---
 
-## 🧠 Tech Stack
+## Tech Stack
 
 * Python 3
 * JSON (File-based storage)
@@ -27,7 +27,7 @@ This project demonstrates real-world backend concepts such as CRUD operations, m
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 cli-user-management-system/
@@ -49,7 +49,7 @@ cli-user-management-system/
 
 ---
 
-## ▶️ How to Run
+## How to Run
 
 ### 1. Clone the repository
 
@@ -71,20 +71,20 @@ python run.py
 
 ---
 
-## 📌 Notes
+## Notes
 
 * `users.json` file will be created automatically during runtime
 * Sample data is provided inside the `data/` folder
 
 ---
 
-## 🖼️ Demo (CLI Output)
+## Demo (CLI Output)
 
 ![Project Demo](assets/demo.png)
 
 ---
 
-## 🔥 Future Improvements
+## Future Improvements
 
 * Input validation
 * UUID-based unique ID system
@@ -94,7 +94,7 @@ python run.py
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Md Sagur Ali**
 Python Backend Developer (Django & DRF)
