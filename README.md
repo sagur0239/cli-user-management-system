@@ -54,7 +54,7 @@ cli-user-management-system/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/cli-user-management-system.git
+git clone https://github.com/sagur0239/cli-user-management-system.git
 ```
 
 ### 2. Navigate to the project directory
