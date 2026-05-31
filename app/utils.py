@@ -1,7 +1,14 @@
-import os
+def get_next_id(users):
+    if not users:
+        return 1
+    return users[-1]["id"] + 1
 
-def clear_screen():
-    os.system("clear")   # Linux
+def validate_name(name):
+    return len(name.strip()) >= 2
 
-def pause():
-    input("\nPress Enter to continue...")
+def validate_age(age):
+    try:
+        age = int(age)
+        return age > 0
+    except:
+        return False

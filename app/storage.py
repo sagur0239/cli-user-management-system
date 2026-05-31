@@ -1,14 +1,17 @@
 import json
+import os
 
 FILE_PATH = "data/users.json"
 
-def load_users():
+def read_users():
+    if not os.path.exists(FILE_PATH):
+        return []
     try:
-        with open(FILE_PATH, "r") as file:
-            return json.load(file)
+        with open(FILE_PATH, "r") as f:
+            return json.load(f)
     except:
         return []
 
-def save_users(users):
-    with open(FILE_PATH, "w") as file:
-        json.dump(users, file, indent=4)
+def write_users(users):
+    with open(FILE_PATH, "w") as f:
+        json.dump(users, f, indent=4)

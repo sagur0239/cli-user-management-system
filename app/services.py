@@ -1,48 +1,44 @@
-from app.storage import load_users, save_users
+from app.storage import read_users, write_users
+from app.utils import get_next_id
 
 def create_user(name, age):
-    users = load_users()
+    users = read_users()
+    user_id = get_next_id(users)
 
-    new_user = {
-        "id": len(users) + 1,
+    user = {
+        "id": user_id,
         "name": name,
         "age": age
     }
 
-    users.append(new_user)
-    save_users(users)
+    users.append(user)
+    write_users(users)
+    return user
 
-    return new_user
+def get_all_users():
+    return read_users()
 
+def update_user(user_id, name, age):
+    users = read_users()
 
-def get_users():
-    return load_users()
-
-
-def update_user(user_id, new_name):
-    users = load_users()
-    found = False
-
-    for user in users:
-        if user["id"] == user_id:
-            user["name"] = new_name
-            found = True
-
-    if found:
-        save_users(users)
-    return found
-
+    for u in users:
+        if u["id"] == user_id:
+            u["name"] = name
+            u["age"] = age
+            write_users(users)
+            return u
+    return None
 
 def delete_user(user_id):
-    users = load_users()
+    users = read_users()
     new_users = [u for u in users if u["id"] != user_id]
 
-    if len(users) != len(new_users):
-        save_users(new_users)
-        return True
-    return False
+    if len(users) == len(new_users):
+        return False
 
+    write_users(new_users)
+    return True
 
-def search_user(keyword):
-    users = load_users()
-    return [u for u in users if keyword.lower() in u["name"].lower()]
+def search_user(name):
+    users = read_users()
+    return [u for u in users if name.lower() in u["name"].lower()]

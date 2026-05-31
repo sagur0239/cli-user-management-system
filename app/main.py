@@ -1,11 +1,19 @@
 from app.services import *
-from app.utils import clear_screen, pause
+import os
+
+def clear():
+    os.system('clear')
+
+def get_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except:
+            print("❌ Enter valid number")
 
 def menu():
     while True:
-        clear_screen()
-
-        print("==== USER MANAGEMENT SYSTEM ====")
+        print("\n==== USER MANAGEMENT SYSTEM ====")
         print("1. Create User")
         print("2. Show Users")
         print("3. Update User")
@@ -15,43 +23,50 @@ def menu():
 
         choice = input("Enter choice: ")
 
-        if choice == "1":
-            name = input("Enter name: ")
-            age = int(input("Enter age: "))
-            user = create_user(name, age)
-            print("✅ Created:", user)
+        try:
+            if choice == "1":
+                name = input("Name: ")
+                age = get_int("Age: ")
+                user = create_user(name, age)
+                print("✅ Created:", user)
 
-        elif choice == "2":
-            users = get_users()
-            for u in users:
-                print(u)
+            elif choice == "2":
+                users = get_all_users()
+                if not users:
+                    print("❌ No users found")
+                else:
+                    for u in users:
+                        print(u)
 
-        elif choice == "3":
-            uid = int(input("Enter ID: "))
-            new_name = input("New name: ")
-            if update_user(uid, new_name):
-                print("✅ Updated")
+            elif choice == "3":
+                uid = get_int("User ID: ")
+                name = input("New Name: ")
+                age = get_int("New Age: ")
+                result = update_user(uid, name, age)
+                print("✅ Updated:", result if result else "❌ Not found")
+
+            elif choice == "4":
+                uid = get_int("User ID: ")
+                print("✅ Deleted" if delete_user(uid) else "❌ Not found")
+
+            elif choice == "5":
+                name = input("Search Name: ")
+                result = search_user(name)
+                if result:
+                    for u in result:
+                        print(u)
+                else:
+                    print("❌ No user found")
+
+            elif choice == "6":
+                print("Goodbye 👋")
+                break
+
             else:
-                print("❌ Not found")
+                print("❌ Invalid choice")
 
-        elif choice == "4":
-            uid = int(input("Enter ID: "))
-            if delete_user(uid):
-                print("✅ Deleted")
-            else:
-                print("❌ Not found")
+        except Exception as e:
+            print("⚠️ Error:", e)
 
-        elif choice == "5":
-            keyword = input("Search: ")
-            results = search_user(keyword)
-            for r in results:
-                print(r)
-
-        elif choice == "6":
-            print("Goodbye 👋")
-            break
-
-        else:
-            print("❌ Invalid choice")
-
-        pause()
+        input("\nPress Enter...")
+        clear()
